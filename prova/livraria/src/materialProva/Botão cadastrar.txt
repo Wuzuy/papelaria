@@ -1,0 +1,91 @@
+try {
+
+						
+
+					Class.forName("com.mysql.cj.jdbc.Driver");
+
+					
+					Connection conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco2", "root", "123456789");
+
+					
+
+					int matricula;
+
+					String nome, endereco,email,atividade,plano;
+
+					
+
+					matricula = Integer.parseInt(txtmatricula.getText());
+
+					nome = txtnome.getText();
+
+					endereco = txtendereco.getText();
+
+					email = txtemail.getText();
+
+					atividade=txtatividade.getText();
+
+					plano=txtplano.getText();
+
+				
+
+					
+
+					String inserir = "INSERT INTO ALUNOS (matricula, nome, endereco, email,atividade,plano) VALUES (?,?,?,?,?,?)";
+
+					
+
+					
+
+					PreparedStatement statement = conexao.prepareStatement(inserir);
+
+					
+
+					statement.setInt(1 , matricula);
+
+					statement.setString(2, nome);
+
+					statement.setString(3, endereco);
+
+					statement.setString(4, email);
+
+					statement.setString(5, atividade);
+
+					statement.setString(6, plano);
+
+					
+
+					int resultado; 
+
+					resultado = statement.executeUpdate();
+
+					
+							
+
+					if (resultado > 0) {
+
+						
+
+						JOptionPane.showMessageDialog(null, "ALUNO CADASTRADO COM SUCESSO!");
+
+					}else{
+
+							JOptionPane.showMessageDialog(null, "ERRO DE CADASTRO, CONFIRA OS DADOS E TENTE NOVAMENTE!");
+
+						}
+
+					
+
+		
+
+					
+
+					} catch (Exception erro) {
+
+						erro.printStackTrace();
+
+						JOptionPane.showMessageDialog(null, "ERRO DE CONEXÃO COM BANCO DE DADOS");
+
+					}
+
+			
